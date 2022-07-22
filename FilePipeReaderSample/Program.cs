@@ -1,17 +1,17 @@
-﻿using System.Text;
-using FilePipeReaderSample;
+﻿using FilePipeReaderSample;
+using System.Text;
 
 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
 var enc = Encoding.GetEncoding("shift-jis");
 
-using var stream = File.Open("data01.dat", FileMode.Open);
 var row = 0;
+
 await FilePipeReader.ReadAllAsync(
-    stream,
+    "data01.dat",
     new byte[] { (byte)'\r', (byte)'\n' },
     (in ReadOnlySpan<byte> buffer) =>
     {
-        Console.WriteLine($"{++row:00000}");
-        Console.WriteLine(enc.GetString(buffer));
+        Console.WriteLine($"{++row:00}");
+        Console.Write(enc.GetString(buffer[9..69]));
+        Console.WriteLine(enc.GetString(buffer[169..247]));
     });

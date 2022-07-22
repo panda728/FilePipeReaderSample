@@ -7,8 +7,9 @@ namespace FilePipeReaderSample
     {
         public delegate void ReadTo(in ReadOnlySpan<byte> buffer);
 
-        public static async Task ReadAllAsync(Stream input, Memory<byte> delimiter, ReadTo readTo)
+        public static async Task ReadAllAsync(string fileName, Memory<byte> delimiter, ReadTo readTo)
         {
+            using var input = File.Open(fileName, FileMode.Open);
             var pipe = new Pipe();
             var writing = FillPipeAsync(input, pipe.Writer);
             var reading = ReadPipeAsync(pipe.Reader, delimiter, readTo);
