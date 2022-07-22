@@ -1,6 +1,6 @@
 # FilePipeReaderSample
 
-``
+```
 using var stream = File.Open("data01.dat", FileMode.Open);
 var row = 0;
 await FilePipeReader.ReadAllAsync(
@@ -11,4 +11,4 @@ await FilePipeReader.ReadAllAsync(
         Console.WriteLine($"{++row:00000}");
         Console.WriteLine(enc.GetString(buffer));
     });
-``
+```
