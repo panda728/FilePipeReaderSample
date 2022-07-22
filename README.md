@@ -1,10 +1,9 @@
 # FilePipeReaderSample
 
 ```
-using var stream = File.Open("data01.dat", FileMode.Open);
 var row = 0;
 await FilePipeReader.ReadAllAsync(
-    stream,
+    "data01.dat",
     new byte[] { (byte)'\r', (byte)'\n' },
     (in ReadOnlySpan<byte> buffer) =>
     {
